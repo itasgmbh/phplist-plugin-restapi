@@ -34,11 +34,16 @@ class Response
         $this->result['data'] = $data;
     }
 
+    public function getData()
+    {
+        return $this->result['data'];
+    }
+
     public function output()
     {
         header('Content-Type: application/json; charset=utf-8;');
         echo $this->json_encode2($this->result);
-        die(0);
+        Common::die(0);
     }
 
     /**

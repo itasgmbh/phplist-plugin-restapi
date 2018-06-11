@@ -44,7 +44,7 @@ class Lists
             );
         
         
-        Common::select('List', 'SELECT * FROM '.$GLOBALS['tables']['list']." WHERE id = :id;",$params,true);
+        return Common::select('List', 'SELECT * FROM '.$GLOBALS['tables']['list']." WHERE id = :id;",$params,true);
     }
 
     /**
@@ -80,11 +80,11 @@ class Lists
             $stmt->execute();
             $id = $db->lastInsertId();
             $db = null;
-            self::listGet($id);
+            $list = self::listGet($id);
         } catch (\Exception $e) {
             Response::outputError($e);
         }
-        die(0);
+        return $list;
     }
 
     /**
@@ -189,7 +189,7 @@ class Lists
         } catch (\Exception $e) {
             Response::outputError($e);
         }
-        die(0);
+        Common::die(0);
     }
 
     /**
@@ -226,7 +226,7 @@ class Lists
         } catch (\Exception $e) {
             Response::outputError($e);
         }
-        die(0);
+        Common::die(0);
     }
 
     /**
@@ -288,11 +288,11 @@ class Lists
             $stmt->bindParam('list_id', $list_id,PDO::PARAM_INT);
             $stmt->execute();
             $db = null;
-            self::listGet($list_id);
+            $list = self::listGet($list_id);
         } catch (\Exception $e) {
             Response::outputError($e);
         }
-        die(0);
+        return $list;
     }
 
     /**

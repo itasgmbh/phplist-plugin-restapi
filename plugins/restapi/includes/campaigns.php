@@ -20,7 +20,7 @@ class Campaigns
             'id' => array($id,PDO::PARAM_INT),
         );
 
-        Common::select('Campaign', 'SELECT * FROM '.$GLOBALS['tables']['message'].' WHERE id=:id;',$params, true);
+        return Common::select('Campaign', 'SELECT * FROM '.$GLOBALS['tables']['message'].' WHERE id=:id;',$params, true);
     }
 
     public static function campaignsCount()
@@ -129,10 +129,11 @@ class Campaigns
             $stmt->execute();
             $id = $db->lastInsertId();
             $db = null;
-            self::campaignGet($id);
+            $campaign = self::campaignGet($id);
         } catch (\Exception $e) {
             Response::outputError($e);
         }
+        return $campaign;
     }
 
     /**
