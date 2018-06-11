@@ -11,11 +11,11 @@ before_script:
   - sudo apt-get update > /dev/null
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
   # Set a custom vhost
-  - sudo sed -i -e "s,/var/www,$(pwd)/vendor/phpList/phplist3/public_html,g" /etc/apache2/sites-available/default
-  - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/default
-  - sudo sed -i -e "/DocumentRoot/i\SetEnv ConfigFile $(pwd)/tests/travis-ci/config.php" /etc/apache2/sites-available/default
+  - sudo sed -i -e "s,/var/www,$(pwd)/vendor/phpList/phplist3/public_html,g" /etc/apache2/sites-available/000-default.conf
+  - sudo sed -i -e "/DocumentRoot/i\ServerName phplist.dev" /etc/apache2/sites-available/000-default.conf
+  - sudo sed -i -e "/DocumentRoot/i\SetEnv ConfigFile $(pwd)/tests/travis-ci/config.php" /etc/apache2/sites-available/000-default.conf
   - echo "127.0.0.1 phplist.dev" | sudo tee -a /etc/hosts
-  - sudo cat /etc/apache2/sites-available/default
+  - sudo cat /etc/apache2/sites-available/000-default.conf
   - sudo /etc/init.d/apache2 restart
   - composer self-update
   - composer install --prefer-dist
