@@ -35,6 +35,7 @@ class Transactional
             $message = $_REQUEST['message'];
             $textMessage = $_REQUEST['textmessage'];
             $template = $_REQUEST['template'];
+            $attributes = $_REQUEST['attributes'];
 
             if (empty($subject) || empty($recipient) || empty($category) || empty($message) || empty($textMessage) || empty($template)) {
                 Response::outputErrorMessage('missing parameter');
@@ -68,6 +69,11 @@ class Transactional
                 $_REQUEST['htmlemail'] = 1;
                 $_REQUEST['confirmed'] = 1;
                 Subscribers::subscriberUpdate();
+            }
+
+            // save attributes if any
+            if (!empty($attributes)) {
+                Subscribers::subscriberUpdateAttributes( $subscriber->id);
             }
 
             // add campaign
