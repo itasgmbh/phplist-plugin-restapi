@@ -502,6 +502,7 @@ class Subscribers
         }
 
         foreach($attributes as $attributeid=>$value){
+            error_log("$attributeid $value");
             self::subscriberUpdateAttribute($userid, $attributeid, $value, true);
         }
 
@@ -511,7 +512,7 @@ class Subscribers
 
         Common::select('Attribute', 'SELECT * FROM '.$GLOBALS['tables']['user_attribute']
             ." WHERE userid=:userid;",$params, false);
-        die(0);
+        Common::die(0);
     }
 
     /**
