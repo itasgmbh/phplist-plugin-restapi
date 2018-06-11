@@ -1,6 +1,6 @@
 # phpList REST API plugin
 
-[![Build Status](https://travis-ci.org/phpList/phplist-plugin-restapi.svg?branch=master)](https://travis-ci.org/phpList/phplist-plugin-restapi)
+[![Build Status](https://travis-ci.org/itasgmbh/phplist-plugin-restapi.svg?branch=master)](https://travis-ci.org/itasgmbh/phplist-plugin-restapi)
 
 
 ## About this plugin
