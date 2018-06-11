@@ -106,7 +106,7 @@ class Subscribers
         $params = array(
             'email' => array($email,PDO::PARAM_STR)
         );
-        Common::select('Subscriber', 'SELECT * FROM '.$GLOBALS['tables']['user']." WHERE email = :email;",$params, true);
+        return Common::select('Subscriber', 'SELECT * FROM '.$GLOBALS['tables']['user']." WHERE email = :email;",$params, true);
     }
 
     /**
@@ -354,8 +354,10 @@ class Subscribers
             $subscribeMessage = str_replace('[LISTS]',$listNames,$subscribeMessage);
             
             $subscribePage = sprintf('%d',$_REQUEST['subscribepage']);
-            sendMail($_REQUEST['email'], getConfig("subscribesubject:$subscribePage"), $subscribeMessage );
-            addUserHistory($_REQUEST['email'], 'Subscription', 'Subscription via the Rest-API plugin');
+            if (!$_REQUEST['transactional']) {
+                sendMail($_REQUEST['email'], getConfig("subscribesubject:$subscribePage"), $subscribeMessage);
+                addUserHistory($_REQUEST['email'], 'Subscription', 'Subscription via the Rest-API plugin');
+            }
             $db = null;
             self::SubscriberGet($subscriberId);
         } catch (\Exception $e) {
