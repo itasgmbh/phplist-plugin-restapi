@@ -1,12 +1,14 @@
 {
-    "repositories": [
+  "name": "phpList/phplist-plugin-restapi",
+  "description": "REST API as a plugin for phpList/phpList3",
+  "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/phpList/phplist3"
         }
     ],
     "require": {
-        "phpList/phplist3": "master"
+      "phpList/phplist3": "dev-master"
     },
     "require-dev": {
         "behat/mink": "~1.4",
