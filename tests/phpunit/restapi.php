@@ -3,7 +3,7 @@
 /**
  * Class Test_.
  */
-class TestRestapi extends \PHPUnit_Framework_TestCase
+class TestRestapi extends \PHPUnit\Framework\TestCase
 {
     public $userId;
     public $loginName;
