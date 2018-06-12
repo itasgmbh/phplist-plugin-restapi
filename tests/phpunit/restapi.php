@@ -1,5 +1,7 @@
 <?php
 
+use phpListRestapi\Response;
+
 /**
  * Class Test_.
  */
@@ -65,8 +67,6 @@ class TestRestapi extends \PHPUnit\Framework\TestCase
         curl_setopt($c, CURLOPT_SSL_VERIFYHOST, false);
         // Execute the call
         $result = curl_exec($c);
-        // read http status code explicitly
-        $result->status = curl_getinfo($c, CURLINFO_HTTP_CODE);
 
         if (curl_errno($c)) {
             print "Error: ".curl_error($c).PHP_EOL;
@@ -76,8 +76,9 @@ class TestRestapi extends \PHPUnit\Framework\TestCase
         if ($decode === true) {
             $result = json_decode($result);
         }
-
-        return $result;
+        $response = new Response();
+        $response->setData('',$result);
+        return $response;
     }
 
     /**
