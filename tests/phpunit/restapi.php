@@ -65,7 +65,9 @@ class TestRestapi extends \PHPUnit\Framework\TestCase
         curl_setopt($c, CURLOPT_SSL_VERIFYHOST, false);
         // Execute the call
         $result = curl_exec($c);
-        
+        // read http status code explicitly
+        $result->status = curl_getinfo($c, CURLINFO_HTTP_CODE);
+
         if (curl_errno($c)) {
             print "Error: ".curl_error($c).PHP_EOL;
         }
