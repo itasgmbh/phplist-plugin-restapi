@@ -16,6 +16,7 @@ class TestRestapi extends \PHPUnit\Framework\TestCase
     private $testEmailAddress = '';
     private $testTemplateTitle = '';
     private $testTemplateRenamedTitle = '';
+    private $processingSecret = '';
 
     public function setUp()
     {
