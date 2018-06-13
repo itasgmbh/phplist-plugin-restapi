@@ -77,7 +77,7 @@ class Transactional
             }
 
             // add campaign
-            $_REQUEST['fromfield'] = 'itasportaldevelopment@itas-gmbh.de VBL';
+            $_REQUEST['fromfield'] = 'itasportaldevelopment@itas-gmbh.de Meine Services';
             $_REQUEST['replyto'] = 'itasportaldevelopment@itas-gmbh.de';
             $_REQUEST['footer'] = '';
             $_REQUEST['status'] = 'submitted';
