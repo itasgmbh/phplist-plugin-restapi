@@ -73,12 +73,20 @@ class Transactional
 
             // save attributes if any
             if (!empty($attributes)) {
-                Subscribers::subscriberUpdateAttributes( $subscriber->id);
+                Subscribers::subscriberUpdateAttributes( $subscriber->id );
             }
 
             // add campaign
-            $_REQUEST['fromfield'] = 'itasportaldevelopment@itas-gmbh.de Meine Services';
-            $_REQUEST['replyto'] = 'itasportaldevelopment@itas-gmbh.de';
+            if (empty($_REQUEST['fromfield'])) {
+                $_REQUEST['fromfield'] = getConfig('campaignfrom_default');
+            }
+            if (empty($_REQUEST['replyto'])) {
+                if (!empty($GLOBALS['replyto'])) {
+                    $_REQUEST['replyto'] = $GLOBALS['replyto'];
+                } else {
+                    $_REQUEST['replyto'] = explode(" ",getConfig('campaignfrom_default'))[0];
+                }
+            }
             $_REQUEST['footer'] = '';
             $_REQUEST['status'] = 'submitted';
             $_REQUEST['sendformat'] = 'HTML';

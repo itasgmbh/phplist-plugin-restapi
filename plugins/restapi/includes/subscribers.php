@@ -85,7 +85,7 @@ class Subscribers
         $params = array(
             'id' => array($id,PDO::PARAM_INT),
         );
-        Common::select('Subscriber', 'SELECT * FROM '.$GLOBALS['tables']['user']." WHERE id = :id;",$params, true);
+        return Common::select('Subscriber', 'SELECT * FROM '.$GLOBALS['tables']['user']." WHERE id = :id;",$params, true);
     }
 
     /**
@@ -359,7 +359,7 @@ class Subscribers
                 addUserHistory($_REQUEST['email'], 'Subscription', 'Subscription via the Rest-API plugin');
             }
             $db = null;
-            self::SubscriberGet($subscriberId);
+            return self::SubscriberGet($subscriberId);
         } catch (\Exception $e) {
             Response::outputError($e);
         }
